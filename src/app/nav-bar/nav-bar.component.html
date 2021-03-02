@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button>
+        <mat-icon (click)="snav.toggle()">menu</mat-icon>
+        <!-- <mat-icon *ngIf="!_navBar.navFlag" (click)="backClicked()">arrow_back</mat-icon> -->
+    </button>
+    <span>{{_navBar.getTitle()}}</span>
+</mat-toolbar>
+
+<mat-sidenav-container fullscreen [style.marginTop.px]="56">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+        fixedTopGap="56">
+        <mat-nav-list (click)="snav.toggle()">
+            <a mat-list-item routerLink="/landing">Home</a>
+            <a mat-list-item>LogOut</a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="container">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>
