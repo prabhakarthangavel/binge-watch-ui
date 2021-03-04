@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-  value = 'Clear me';
+  public value: String = '';
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSearch(value:any) {
+    console.log("value",value.target.value)
   }
 
 }
