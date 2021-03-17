@@ -1,9 +1,22 @@
 <div class="margin">
   <mat-form-field class="searchBar">
     <mat-label>Search Movies</mat-label>
-    <input matInput type="text" [(ngModel)]="value" (input)="onSearch($event)">
+    <input matInput type="text" [(ngModel)]="value" (input)="onSearch($event)" [matAutocomplete]="auto">
     <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
       <mat-icon>close</mat-icon>
     </button>
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option value="" *ngFor="let result of resultArray" style="height: 85px;"> 
+        <div class="flex-container">
+          <div class="flex-item1">
+            <img width="48" height="70" src={{result.img}}> 
+          </div>
+          <div class="flex-item2">
+            <span>{{result.l}} - </span>
+            <span style="color: lightgray;">{{ result.y }}</span>
+          </div>
+        </div>
+      </mat-option>
+    </mat-autocomplete> 
   </mat-form-field>
 </div>

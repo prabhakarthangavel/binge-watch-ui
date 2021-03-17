@@ -1,3 +1,27 @@
 .searchBar{
     width: 100%;
 }
+
+.option1{
+    // background:  url("https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg")  center / contain no-repeat;
+    white-space: nowrap
+  
+  }
+
+img {
+    margin: 8% 2% 0 0;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-item1 {
+    width: 20%;
+    flex-grow: 1;
+}
+
+.flex-item2 {
+    width: 50%;
+    flex-grow: 2;
+}
