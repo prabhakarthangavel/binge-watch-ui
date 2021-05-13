@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class NavBarService {
 
   public navFlag: boolean = true;
-  public title: string = "Binge Watch";
+  public title: string = "Posts";
 
   constructor() { }
 

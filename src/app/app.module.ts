@@ -9,14 +9,14 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LandingComponent } from './landing/landing.component';
-import { SearchResultsComponent } from './search-results/search-results.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     LandingComponent,
-    SearchResultsComponent
+    PostComponent
   ],
   imports: [
     BrowserModule,

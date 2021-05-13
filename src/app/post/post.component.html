@@ -1,0 +1,37 @@
+<div class="margin" *ngIf="this._navService.getTitle() == 'New Post'">
+  <mat-form-field class="searchBar">
+    <mat-label>Search Movies</mat-label>
+    <input matInput type="text" [(ngModel)]="value" (input)="onSearch($event)" [matAutocomplete]="auto">
+    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option value="" *ngFor="let result of resultArray" style="height: 85px;">
+        <div class="flex-container" (click)="movieSelected(result)">
+          <div class="flex-item1">
+            <img width="50" height="70" src={{result.img}}>
+          </div>
+          <div class="flex-item2">
+            <div class="title">{{result.l}}
+              <span class="font-style" *ngIf="result.q == 'feature'"> - Movie</span>
+              <span class="font-style" *ngIf="result.q == 'TV series'"> - Series</span>
+              <span class="font-style"> {{ result.y }}</span>
+            </div>
+            <div class="font-style">{{ result.s }}</div>
+          </div>
+        </div>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+<div *ngIf="this._navService.getTitle() == 'I Watched'">
+  <div class="flex-container1">
+    <div class="flex1">
+      <span class="movie-font">{{this.selectedMovie.l}}</span>
+      <span class="font-style"style="margin-left: 2%;" >{{this.selectedMovie.y}}</span>
+    </div>
+    <div class="flex2">
+      <img width="50" height="70" src={{this.selectedMovie.img}}>
+    </div>
+  </div>
+</div>

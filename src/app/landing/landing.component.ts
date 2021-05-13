@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LandingService } from './landing.service';
 import { Search } from '../Shared/Search.interface';
 
@@ -8,28 +9,13 @@ import { Search } from '../Shared/Search.interface';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-  public value: string = '';
-  public nameList: string[] = [];
-  public resultArray: Search[] = [];
-  constructor(private _landingService: LandingService) { }
+  
+  constructor(private _router: Router){}
 
-  ngOnInit(): void {
+  ngOnInit() {}
+ 
+  addPost() {
+    console.log(); 
+    this._router.navigate(['/posts']);
   }
-
-  onSearch(value: any) {
-    // this._landingService.searchMovies(value.target.value).subscribe(
-    //   response => {
-    //     console.log('response',response);
-    // });
-    this._landingService.searchDummy(value.target.value).subscribe(
-      response => {
-        this.resultArray = response.d;
-        for(let i = 0;i<this.resultArray.length;i++) {
-          this.resultArray[i].img = response.d[i].i.imageUrl;
-        }
-        console.log(this.resultArray);
-      }
-    )
-  }
-
 }
