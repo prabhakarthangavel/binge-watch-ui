@@ -3,7 +3,7 @@
         <mat-icon (click)="snav.toggle()">menu</mat-icon>
         <!-- <mat-icon *ngIf="!_navBar.navFlag" (click)="backClicked()">arrow_back</mat-icon> -->
     </button>
-    <button mat-icon-button class="close-button" *ngIf="!_navBar.navFlag">
+    <button mat-icon-button class="close-button" *ngIf="!_navBar.navFlag" (click)="closed()">
         <mat-icon class="close-icon">close</mat-icon>
     </button>
     <span>{{_navBar.getTitle()}}</span>

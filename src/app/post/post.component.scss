@@ -37,6 +37,10 @@ img {
     flex-grow: 1;
 }
 
+.flex2-margin {
+    margin: 4% 5% 0 0;
+}
+
 .title {
     margin-bottom: -10%;
     margin-top: 8%;
@@ -54,5 +58,25 @@ img {
 
 .flex-container1 {
     display: flex;
-    outline: 0.1rem solid #bababa;
+    border-bottom: 0.1rem solid #bababa;
+}
+
+.flex3{
+    width: 50%;
+    margin-top: 0%;
+    flex-grow: 2;
+}
+
+.flex4 {
+    margin: 2%;
+    width: 100%;
+}
+
+textarea {
+    height: 95px;
+}
+
+.submit-btn{
+    width: 100%;
+    background-color: #c2185b;
 }

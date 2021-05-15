@@ -2,11 +2,8 @@
   <mat-form-field class="searchBar">
     <mat-label>Search Movies</mat-label>
     <input matInput type="text" [(ngModel)]="value" (input)="onSearch($event)" [matAutocomplete]="auto">
-    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-      <mat-icon>close</mat-icon>
-    </button>
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option value="" *ngFor="let result of resultArray" style="height: 85px;">
+      <mat-option value="" *ngFor="let result of resultArray" style="height: 85px;border-bottom: 0.1rem solid #bababa;">
         <div class="flex-container" (click)="movieSelected(result)">
           <div class="flex-item1">
             <img width="50" height="70" src={{result.img}}>
@@ -33,5 +30,55 @@
     <div class="flex2">
       <img width="50" height="70" src={{this.selectedMovie.img}}>
     </div>
+  </div>
+  <div class="flex-container1">
+    <div class="flex1">
+      <span class="font-style">Date</span>
+    </div>
+    <div class="flex2 flex2-margin">
+      <mat-form-field appearance="fill">
+        <mat-label>Date Watched</mat-label>
+        <input matInput [matDatepicker]="picker" [formControl]="date1">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="flex-container1">
+    <div class="flex1" style="margin: 5% 7%;">
+      <star-rating [value]="this.stars" [totalstars]=10 checkedcolor="#c2185b" uncheckedcolor="#bababa" size="30px" [readonly]=false (rate)="onRate($event)"></star-rating>
+      <div>
+        <span class="font-style">Rate</span>
+      </div>
+    </div>
+  </div>
+  <div class="flex-container1">
+    <div class="flex3" (click)="likeDislike('like')">
+      <img width="100" height="110" style="margin: 0% 0 -15% 40%;" src={{this.likeLink}}>
+      <div class="font-style" style="margin-left: 55%;">Like</div>
+    </div>
+    <div class="flex3" (click)="likeDislike('dislike')">
+      <img width="130" height="110" style="margin: 0% 0 -15% 0;" src={{this.disLikeLink}}>
+      <div class="font-style" style="margin-left: 25%;">Unlike</div>
+    </div>
+  </div>
+  <div class="flex-container">
+    <div class="flex4">
+      <mat-form-field class="example-full-width" style="width: 100%;">
+        <mat-label class="font-style">Add Review</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>  
+    </div>
+  </div>
+  <div class="flex-container">
+    <div class="flex4">
+      <mat-form-field class="example-full-width" style="width: 100%;">
+        <mat-label>Add Tags</mat-label>
+        <input matInput type="text" placeholder="Use comma to seperate tags">
+      </mat-form-field>  
+    </div>
+  </div>
+  <div style="margin: 2%;">
+    <button mat-raised-button class="submit-btn" [disabled]=false>Post</button>
   </div>
 </div>

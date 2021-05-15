@@ -15,7 +15,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTabsModule } from '@angular/material/tabs';
-
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -37,7 +37,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatAutocompleteModule,
-    MatTabsModule
+    MatTabsModule,
+    MatNativeDateModule
   ],
   exports: [
     MatIconModule,
