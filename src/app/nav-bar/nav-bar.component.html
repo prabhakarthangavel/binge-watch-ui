@@ -1,12 +1,41 @@
 <mat-toolbar color="primary">
-     <button mat-icon-button *ngIf="_navBar.navFlag">
-        <mat-icon (click)="snav.toggle()">menu</mat-icon>
-        <!-- <mat-icon *ngIf="!_navBar.navFlag" (click)="backClicked()">arrow_back</mat-icon> -->
-    </button>
-    <button mat-icon-button class="close-button" *ngIf="!_navBar.navFlag" (click)="closed()">
-        <mat-icon class="close-icon">close</mat-icon>
-    </button>
-    <span>{{_navBar.getTitle()}}</span>
+    <div *ngIf="searchEnabled" style="width: 100%;">
+        <mat-icon (click)="arrowback()">arrow_back</mat-icon>
+        <mat-form-field class="search-bar">
+            <input matInput placeholder="Search Movies"  type="text" [(ngModel)]="value" (input)="onSearch($event)" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option value="" *ngFor="let result of resultArray" style="height: 85px;border-bottom: 0.1rem solid #bababa;">
+                  <div class="flex-container" (click)="movieSelected(result)">
+                    <div class="flex-item1">
+                      <img width="50" height="70" src={{result.img}}>
+                    </div>
+                    <div class="flex-item2">
+                      <div class="title">{{result.l}}
+                        <span class="font-style"> {{ result.y }}</span>
+                      </div>
+                      <div class="font-style">{{ result.s }}</div>
+                    </div>
+                  </div>
+                </mat-option>
+              </mat-autocomplete>
+        </mat-form-field>
+
+
+    </div>
+    <div *ngIf="!searchEnabled">
+        <button mat-icon-button *ngIf="_navBar.navFlag">
+            <mat-icon (click)="snav.toggle()">menu</mat-icon>
+            <!-- <mat-icon *ngIf="!_navBar.navFlag" (click)="backClicked()">arrow_back</mat-icon> -->
+        </button>
+        <button mat-icon-button class="close-button" *ngIf="!_navBar.navFlag" (click)="closed()">
+            <mat-icon class="close-icon">close</mat-icon>
+        </button>
+        <span style="margin-top: 2%;">{{_navBar.getTitle()}}</span>
+        <button mat-icon-button class="close-button" *ngIf="_navBar.navFlag" style="margin-left: 120%;"
+            (click)="seachClicked()">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
 </mat-toolbar>
 
 <mat-sidenav-container fullscreen [style.marginTop.px]="56">

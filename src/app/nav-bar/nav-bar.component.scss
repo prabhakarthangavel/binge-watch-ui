@@ -1,3 +1,38 @@
 .close-btn {
     right: 0;
 }
+
+.search-bar{
+    width: 85%;
+    margin: 9% 0 0 3%;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-item1 {
+    width: 20%;
+    flex-grow: 1;
+}
+
+.flex-item2 {
+    width: 50%;
+    flex-grow: 2;
+    margin-left: -5%;
+}
+
+.font-style {
+    color: lightgray;
+    font-size: 13px;
+}
+
+.title {
+    margin-bottom: -16%;
+    margin-top: 10%;
+    font-size: 13px;
+}
+
+img {
+    margin: 25% 0 0 0;
+}
