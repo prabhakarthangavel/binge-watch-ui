@@ -19,9 +19,8 @@
                 </mat-option>
               </mat-autocomplete>
         </mat-form-field>
-
-
     </div>
+    
     <div *ngIf="!searchEnabled">
         <button mat-icon-button *ngIf="_navBar.navFlag">
             <mat-icon (click)="snav.toggle()">menu</mat-icon>
@@ -30,8 +29,8 @@
         <button mat-icon-button class="close-button" *ngIf="!_navBar.navFlag" (click)="closed()">
             <mat-icon class="close-icon">close</mat-icon>
         </button>
-        <span style="margin-top: 2%;">{{_navBar.getTitle()}}</span>
-        <button mat-icon-button class="close-button" *ngIf="_navBar.navFlag" style="margin-left: 120%;"
+        <mat-label>{{_navBar.getTitle()}}</mat-label>
+        <button mat-icon-button class="close-button" *ngIf="_navBar.navFlag" style="margin-left: 30vh;"
             (click)="seachClicked()">
             <mat-icon>search</mat-icon>
         </button>

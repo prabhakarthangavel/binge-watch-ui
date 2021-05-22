@@ -11,13 +11,15 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LandingComponent } from './landing/landing.component';
 import { PostComponent } from './post/post.component';
 import { RatingModule } from 'ng-starrating';
+import { MovieInfoComponent } from './movie-info/movie-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     LandingComponent,
-    PostComponent
+    PostComponent,
+    MovieInfoComponent
   ],
   imports: [
     BrowserModule,

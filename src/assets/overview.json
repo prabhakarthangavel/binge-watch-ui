@@ -1,0 +1,51 @@
+{
+    "id": "/title/tt0974015/",
+    "title": {
+        "@type": "imdb.api.title.title",
+        "id": "/title/tt0974015/",
+        "image": {
+            "height": 6000,
+            "id": "/title/tt0974015/images/rm1061640448",
+            "url": "https://m.media-amazon.com/images/M/MV5BYWVhZjZkYTItOGIwYS00NmRkLWJlYjctMWM0ZjFmMDU4ZjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+            "width": 4050
+        },
+        "runningTimeInMinutes": 120,
+        "title": "Justice League",
+        "titleType": "movie",
+        "year": 2017
+    },
+    "certificates": {
+        "US": [
+            {
+                "certificate": "PG-13",
+                "certificateNumber": 51239,
+                "ratingReason": "Rated PG-13 for sequences of sci-fi violence and action",
+                "ratingsBody": "MPAA",
+                "country": "US"
+            }
+        ]
+    },
+    "ratings": {
+        "canRate": true,
+        "rating": 6.2,
+        "ratingCount": 414148,
+        "topRank": 4199
+    },
+    "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy",
+        "Sci-Fi"
+    ],
+    "releaseDate": "2017-11-17",
+    "plotOutline": {
+        "author": "Anonymous",
+        "id": "/title/tt0974015/plot/po1135058",
+        "text": "Fueled by his restored faith in humanity and inspired by Superman's selfless act, Bruce Wayne enlists the help of his new-found ally, Diana Prince, to face an even greater enemy."
+    },
+    "plotSummary": {
+        "author": "ahmetkozan",
+        "id": "/title/tt0974015/plot/ps2812038",
+        "text": "Fueled by his restored faith in humanity and inspired by Superman's selfless act, Bruce Wayne enlists the help of his newfound ally, Diana Prince, to face an even greater enemy. Together, Batman and Wonder Woman work quickly to find and recruit a team of meta-humans to stand against this newly awakened threat. But despite the formation of this unprecedented league of heroes-Batman, Wonder Woman, Aquaman, Cyborg and The Flash-it may already be too late to save the planet from an assault of catastrophic proportions."
+    }
+}

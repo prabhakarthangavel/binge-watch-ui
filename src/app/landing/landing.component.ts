@@ -18,8 +18,7 @@ export class LandingComponent implements OnInit {
 
   ngOnInit() {}
  
-  addPost() {
-    console.log(); 
+  addPost() { 
     this._router.navigate(['/posts']);
   }
 }

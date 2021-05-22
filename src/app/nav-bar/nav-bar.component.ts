@@ -34,7 +34,6 @@ export class NavBarComponent implements OnInit, OnDestroy, AfterContentChecked {
   }
 
   closed() {
-    console.log('closed')
     this._router.navigate(['/landing'])
   }
 
@@ -48,6 +47,8 @@ export class NavBarComponent implements OnInit, OnDestroy, AfterContentChecked {
 
   movieSelected(movie: Search) {
     console.log(movie)
+    this.searchEnabled = false;
+    this._router.navigate(['/movie-info'], { queryParams: {id: movie.id, cast: movie.s, img: movie.img}});
   }
 
   onSearch(value: any) {
@@ -57,11 +58,11 @@ export class NavBarComponent implements OnInit, OnDestroy, AfterContentChecked {
     // });
     this._postService.searchDummy(value.target.value).subscribe(
       response => {
+        console.log(response)
         this.resultArray = response.d;
         for(let i = 0;i<this.resultArray.length;i++) {
           this.resultArray[i].img = response.d[i].i.imageUrl;
         }
-        console.log(this.resultArray);
       }
     )
   }
