@@ -56,7 +56,7 @@ export class PostComponent implements OnInit {
   }
 
   likeDislike(value: string) {
-    this.likeLink = value == 'like' ?  "../../assets/up_green.png" : "../../assets/up.png";
-    this.disLikeLink = value == 'dislike' ?  "../../assets/down_red.png" : "../../assets/down.png";
+    // this.likeLink = value == 'like' ?  "../../assets/star_gray.png" : "../../assets/star_gray.png";
+    // this.disLikeLink = value == 'dislike' ?  "../../assets/down_red.png" : "../../assets/down.png";
   }
 }

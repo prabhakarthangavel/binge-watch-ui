@@ -1,7 +1,6 @@
 export interface MovieInfo {
     name: string,
     img: string,
-    director: string,
     year: number,
     running_length: number,
     rating: number,

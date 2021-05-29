@@ -1,0 +1,35 @@
+.flex-container {
+    display: flex;
+}
+
+.flex-item1 {
+    flex-grow: 4;
+}
+
+.flex-item2 {
+    flex-grow: 1;
+}
+
+.font-style {
+    color: #C0C0C0;
+    margin-top: 6%;
+    font-size: 1rem;
+}
+
+.movie-font {
+    color: whitesmoke;
+    font-size: 1.4rem;
+}
+
+.submit-btn{
+    margin: 4% 0 0 0;
+    width: 100%;
+}
+
+img {
+    box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+.seperate {
+    border-bottom: 0 0 0 1px rgb(0 0 0 / 20%);
+}
