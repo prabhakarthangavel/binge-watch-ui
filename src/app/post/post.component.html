@@ -38,7 +38,7 @@
     <div class="flex2 flex2-margin">
       <mat-form-field appearance="fill">
         <mat-label>Date Watched</mat-label>
-        <input matInput [matDatepicker]="picker" [formControl]="date1">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="date1">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -52,7 +52,7 @@
       </div>
     </div>
     <div style="margin: 0 2% 0 0;">
-      <img width="48" height="55" src="../../assets/star_gray.png">
+      <img width="48" height="50" src={{this.likeLink}} (click)="likeDislike('like')">
       <div class="font-style" style="margin: -18% 0 0 25%;">Like</div>
     </div>
   </div>
@@ -60,7 +60,7 @@
     <div class="flex4">
       <mat-form-field class="example-full-width" style="width: 100%;">
         <mat-label class="font-style">Add Review</mat-label>
-        <textarea matInput></textarea>
+        <textarea matInput [(ngModel)]="description"></textarea>
       </mat-form-field>  
     </div>
   </div>
@@ -68,11 +68,11 @@
     <div class="flex4">
       <mat-form-field class="example-full-width" style="width: 100%;">
         <mat-label>Add Tags</mat-label>
-        <input matInput type="text" placeholder="Use comma to seperate tags">
+        <input matInput type="text" placeholder="Use comma to seperate tags" [(ngModel)]="tags">
       </mat-form-field>  
     </div>
   </div>
   <div style="margin: 2%;">
-    <button mat-raised-button class="submit-btn" [disabled]=false>Post</button>
+    <button mat-raised-button class="submit-btn" [disabled]="!enablePost()" (click)="createPost()">Post</button>
   </div>
 </div>

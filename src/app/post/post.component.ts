@@ -5,6 +5,7 @@ import { PostService } from '../post/post.service';
 import { NavBarService } from '../nav-bar/nav-bar.service';
 import { FormControl } from '@angular/forms';
 import { StarRatingComponent } from 'ng-starrating';
+import { Post } from '../Shared/Post.interface';
 
 @Component({
   selector: 'app-post',
@@ -16,12 +17,13 @@ export class PostComponent implements OnInit {
   public nameList: string[] = [];
   public resultArray: Search[] = [];
   public selectedMovie: Search;
-  public date1 = new FormControl(new Date());
-  public stars: number;
+  public date1 = new Date();
+  public stars: number = 0;
   public movieLiked: boolean;
   public movieDisliked: boolean;
-  public likeLink = "../../assets/up.png";
-  public disLikeLink = "../../assets/down.png";
+  public likeLink = "../../assets/star_gray.png";
+  public description: string;
+  public tags: string;
   constructor(private _postService: PostService, public _navService: NavBarService) { 
     this._navService.setHide();
     this._navService.setTitle("New Post");
@@ -56,7 +58,36 @@ export class PostComponent implements OnInit {
   }
 
   likeDislike(value: string) {
-    // this.likeLink = value == 'like' ?  "../../assets/star_gray.png" : "../../assets/star_gray.png";
-    // this.disLikeLink = value == 'dislike' ?  "../../assets/down_red.png" : "../../assets/down.png";
+    if(this.likeLink == '../../assets/star_gray.png') {
+      this.likeLink = '../../assets/star_color.png';
+    }else if(this.likeLink == '../../assets/star_color.png') {
+      this.likeLink = '../../assets/star_gray.png'
+    }
+  }
+
+  enablePost(): boolean {
+    if(this.date1 == null || this.stars == 0) return false;
+    return true;
+  }
+
+  createPost() {
+    const newPost: Post = {
+      user_id: 123,
+      movie_id: this.selectedMovie.id,
+      post_date: this.date1,
+      stars: this.stars,
+      movie_like: this.likeLink == '../../assets/star_color.png' ? 'Y' : 'N',
+      review: this.description,
+      tags: this.tags,
+      movie_name: this.selectedMovie.l,
+      movie_img: this.selectedMovie.img,
+      year: this.selectedMovie.y,
+      cast: this.selectedMovie.s
+    }
+    this._postService.createNewPost(newPost).subscribe(
+      response => {
+        console.log('response',response)
+      }
+    )
   }
 }
