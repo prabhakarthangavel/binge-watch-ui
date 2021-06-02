@@ -12,6 +12,8 @@ import { LandingComponent } from './landing/landing.component';
 import { PostComponent } from './post/post.component';
 import { RatingModule } from 'ng-starrating';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
+import { LoginComponent } from './authenticate/login/login.component';
+import { RegisterComponent } from './authenticate/register/register.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { MovieInfoComponent } from './movie-info/movie-info.component';
     NavBarComponent,
     LandingComponent,
     PostComponent,
-    MovieInfoComponent
+    MovieInfoComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

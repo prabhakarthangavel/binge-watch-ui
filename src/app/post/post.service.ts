@@ -27,6 +27,6 @@ export class PostService {
   }
 
   createNewPost(post: Post): Observable<any> {
-    return this._http.post(MOCK_API.BASE_URL + this.newPost, post, { observe: 'response' });
+    return this._http.post(MOCK_API.BASE_URL + this.newPost, post, { observe: 'response'});
   }
 }
