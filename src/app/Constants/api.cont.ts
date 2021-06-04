@@ -1,3 +1,4 @@
 export const API = {
-    BASE_URL: 'https://imdb8.p.rapidapi.com'
+    RAPID_API: 'https://imdb8.p.rapidapi.com',
+    BASE_URL: 'http://localhost:8080/'
 }

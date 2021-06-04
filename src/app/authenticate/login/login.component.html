@@ -1,23 +1,31 @@
 <main>
-    <img src="../../assets/logo.jfif" alt="binge_watch" width="105" height="95">
-    <div class="form-fields">
-        <div>
-            <mat-form-field class="form-field" appearance="outline">
-                <mat-label>Outline form field</mat-label>
-                <input matInput placeholder="Placeholder">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint>Hint</mat-hint>
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field class="form-field" appearance="outline">
-                <mat-label>Enter your password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
+    <div class="inner-box">
+        <img src="../../assets/logo.jfif" alt="binge_watch" width="125" height="115">
+        <div class="form-fields">
+            <form [formGroup]="loginForm">
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>User Name</mat-label>
+                    <input matInput placeholder="Enter user name" formControlName="userName" id="userName">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-hint>Email</mat-hint>
+                </mat-form-field>
+                <div class="errors" *ngIf="form.userName.touched && form.userName.invalid && form.userName.errors">
+                    <div *ngIf="form.userName.errors.required">UserName Required</div>
+                </div>
+
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <div class="errors" *ngIf="form.password.touched && form.password.invalid && form.password.errors">
+                    <div *ngIf="form.password.errors.required">Password Required</div>
+                </div>
+            </form>
+            <button mat-raised-button class="submit-btn" [disabled]="!loginForm.valid" (click)="login()">Login</button>
         </div>
     </div>
 </main>

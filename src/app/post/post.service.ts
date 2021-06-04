@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { API } from '../Constants/api.cont';
-import { MOCK_API } from '../Constants/mock-api.const';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Post } from '../Shared/Post.interface';
@@ -19,7 +18,7 @@ export class PostService {
     })
     let params = new HttpParams();
     params = params.append("q", query);
-    return this._http.get(API.BASE_URL + this.autoComplete, {params: params, headers: header, observe: 'response'});
+    return this._http.get(API.RAPID_API + this.autoComplete, {params: params, headers: header, observe: 'response'});
   }
 
   searchDummy(query: string): Observable<any> {
@@ -27,6 +26,6 @@ export class PostService {
   }
 
   createNewPost(post: Post): Observable<any> {
-    return this._http.post(MOCK_API.BASE_URL + this.newPost, post, { observe: 'response'});
+    return this._http.post(API.BASE_URL + this.newPost, post, { observe: 'response'});
   }
 }
