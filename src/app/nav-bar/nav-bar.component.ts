@@ -66,4 +66,9 @@ export class NavBarComponent implements OnInit, OnDestroy, AfterContentChecked {
       }
     )
   }
+
+  logout() {
+    // localStorage.removeItem('token');
+    this._router.navigate(['/login']);
+  }
 }

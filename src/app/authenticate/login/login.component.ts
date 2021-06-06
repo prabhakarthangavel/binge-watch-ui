@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms'
 import { Login } from '../../Shared/Login.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
     userName: ['', Validators.required],
     password: ['', Validators.required],
   });
-  constructor(private fb: FormBuilder, private _authService: AuthService) { }
+  constructor(private fb: FormBuilder, private _authService: AuthService, private _router: Router) { }
 
   ngOnInit(): void {
     console.log(this.loginForm.controls)
@@ -32,6 +33,10 @@ export class LoginComponent implements OnInit {
     this._authService.loginUser(login).subscribe(
       response => {
         console.log(response);
+        if(response && response.status == 200) {
+          localStorage.setItem('token', response.body.response);
+          this._router.navigate(['/landing']);
+        }
       }
     )
   }

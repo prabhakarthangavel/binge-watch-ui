@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { RatingModule } from 'ng-starrating';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { LoginComponent } from './authenticate/login/login.component';
 import { RegisterComponent } from './authenticate/register/register.component';
+import { Interceptor } from './Shared/Interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import { RegisterComponent } from './authenticate/register/register.component';
     HttpClientModule,
     RatingModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
