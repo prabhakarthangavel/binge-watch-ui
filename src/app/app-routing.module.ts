@@ -5,13 +5,14 @@ import { PostComponent } from './post/post.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { LoginComponent } from './authenticate/login/login.component';
 import { RegisterComponent } from './authenticate/register/register.component';
+import { AuthguardService } from './authenticate/authguard.service';
 
 const routes: Routes = [
-  { path: 'landing', component: LandingComponent },
-  { path: 'posts', component: PostComponent },
-  { path: 'movie-info', component: MovieInfoComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'landing', component: LandingComponent, canActivate: [AuthguardService] },
+  { path: 'posts', component: PostComponent, canActivate: [AuthguardService] },
+  { path: 'movie-info', component: MovieInfoComponent, canActivate: [AuthguardService] },
+  { path: 'login', component: LoginComponent, canActivate: [AuthguardService] },
+  { path: 'register', component: RegisterComponent, canActivate: [AuthguardService] },
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '**', redirectTo: '' },
 ];

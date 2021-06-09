@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { API } from '../Constants/api.cont';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Login } from '../Shared/Login.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -10,7 +10,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
   private loginUrl = API.BASE_URL + 'public/authenticate';
-  public spinner: boolean;
+  private _spinner = new Subject();
+  public spinner = this._spinner.asObservable();
   constructor(private _http: HttpClient) { }
 
   isAuthenticated(): boolean {
@@ -30,5 +31,9 @@ export class AuthService {
 
   loginUser(loginData: Login): Observable<any> {
     return this._http.post(this.loginUrl, loginData, { observe: 'response' });
+  }
+
+  spinnerState(value: boolean): void {
+    this._spinner.next(value);
   }
 }

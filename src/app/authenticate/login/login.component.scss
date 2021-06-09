@@ -22,13 +22,33 @@ img {
     margin-top: 5%;
     width: 80%;
     background-color: #c2185b;
+    height: 50px;
 }
 
 .inner-box {
     text-align: center;
     margin: 25% 5% 0 5%;
     background-color: darkslateblue;
-    height: 75vh;
-    border-radius: 5%;
     box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+input {
+    color: whitesmoke;
+}
+
+.login-footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 10% 10% 0 10%;
+}
+
+.signup {
+    margin-bottom: 5%;
+    color: whitesmoke;
+    font-size: small;
+}
+
+.forgotpswd {
+    color: lightgray;
+    font-size: smaller;
 }

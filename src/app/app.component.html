@@ -1,5 +1,5 @@
 <app-nav-bar *ngIf="this._authService.isAuthenticated()"></app-nav-bar>
 <app-login *ngIf="!this._authService.isAuthenticated()"></app-login>
-<div class="loading-indicator" *ngIf="this._authService.spinner">
+<div class="loading-indicator" *ngIf="_authService.spinner | async">
     <mat-spinner></mat-spinner>
 </div>

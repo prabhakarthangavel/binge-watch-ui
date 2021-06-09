@@ -58,7 +58,6 @@ export class NavBarComponent implements OnInit, OnDestroy, AfterContentChecked {
     // });
     this._postService.searchDummy(value.target.value).subscribe(
       response => {
-        console.log(response)
         this.resultArray = response.d;
         for(let i = 0;i<this.resultArray.length;i++) {
           this.resultArray[i].img = response.d[i].i.imageUrl;
@@ -68,7 +67,7 @@ export class NavBarComponent implements OnInit, OnDestroy, AfterContentChecked {
   }
 
   logout() {
-    // localStorage.removeItem('token');
+    localStorage.removeItem('token');
     this._router.navigate(['/login']);
   }
 }
