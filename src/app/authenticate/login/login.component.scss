@@ -1,7 +1,8 @@
 main {
     height: 100%;
-    overflow: hidden;
     background-image: url("../../../assets/bg.jpg");
+    overflow: auto;
+    padding-bottom: 10%;
 }
 
 img {
@@ -43,7 +44,6 @@ input {
 }
 
 .signup {
-    margin-bottom: 5%;
     color: whitesmoke;
     font-size: small;
 }
@@ -51,4 +51,8 @@ input {
 .forgotpswd {
     color: lightgray;
     font-size: smaller;
+}
+
+form {
+    padding-bottom: 8%;
 }

@@ -12,9 +12,18 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginComponent implements OnInit {
   public hide = true;
+  public loginEnable: boolean = true;
+  public invalidPswd: boolean;
   public loginForm: FormGroup = this.fb.group({
     userName: ['', Validators.required],
     password: ['', Validators.required],
+  });
+  public registerForm: FormGroup = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    userName: ['', [Validators.required, Validators.pattern('^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$')]],
+    password: ['', Validators.required],
+    repassword: ['', Validators.required]
   });
   constructor(private fb: FormBuilder, private _authService: AuthService, private _router: Router, private _snackBar: MatSnackBar) { }
 
@@ -26,7 +35,11 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  login() {
+  get regform() {
+    return this.registerForm.controls;
+  }
+
+  login(): void {
     const login: Login = {
       username: this.loginForm.controls.userName.value,
       password: this.loginForm.controls.password.value
@@ -46,6 +59,19 @@ export class LoginComponent implements OnInit {
         }
       }
     )
+  }
+
+  passwordCheck(){
+    this.invalidPswd = false;
+  }
+
+  register(): void {
+    if(this.registerForm.controls.password.value != this.registerForm.controls.repassword.value) {
+      this.invalidPswd = true;
+    }else {
+      this.invalidPswd = false;
+    }
+    console.log('regform',this.registerForm.controls)
   }
 
 }
