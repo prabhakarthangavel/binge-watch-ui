@@ -14,7 +14,6 @@ import { PostComponent } from './post/post.component';
 import { RatingModule } from 'ng-starrating';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { LoginComponent } from './authenticate/login/login.component';
-import { RegisterComponent } from './authenticate/register/register.component';
 import { Interceptor } from './Shared/Interceptor';
 
 @NgModule({
@@ -24,8 +23,7 @@ import { Interceptor } from './Shared/Interceptor';
     LandingComponent,
     PostComponent,
     MovieInfoComponent,
-    LoginComponent,
-    RegisterComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,

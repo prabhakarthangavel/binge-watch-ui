@@ -4,12 +4,14 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Login } from '../Shared/Login.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Register } from '../Shared/Register.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private loginUrl = API.BASE_URL + 'public/authenticate';
+  private registerUrl = API.BASE_URL + 'public/register';
   private _spinner = new Subject();
   public spinner = this._spinner.asObservable();
   constructor(private _http: HttpClient) { }
@@ -31,6 +33,10 @@ export class AuthService {
 
   loginUser(loginData: Login): Observable<any> {
     return this._http.post(this.loginUrl, loginData, { observe: 'response' });
+  }
+
+  registerUser(regiterData: Register): Observable<any> {
+    return this._http.post(this.registerUrl, regiterData, { observe: 'response' })
   }
 
   spinnerState(value: boolean): void {

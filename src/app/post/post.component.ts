@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { from } from 'rxjs';
+import { Router } from '@angular/router';
 import { Search } from '../Shared/Search.interface';
 import { PostService } from '../post/post.service';
 import { NavBarService } from '../nav-bar/nav-bar.service';
-import { FormControl } from '@angular/forms';
 import { StarRatingComponent } from 'ng-starrating';
 import { Post } from '../Shared/Post.interface';
+import { AuthService } from '../authenticate/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-post',
@@ -24,7 +25,7 @@ export class PostComponent implements OnInit {
   public likeLink = "../../assets/star_gray.png";
   public description: string;
   public tags: string;
-  constructor(private _postService: PostService, public _navService: NavBarService) { 
+  constructor(private _postService: PostService, public _navService: NavBarService, private _authService: AuthService, private _snackBar: MatSnackBar, private _route: Router) { 
     this._navService.setHide();
     this._navService.setTitle("New Post");
   }
@@ -51,6 +52,25 @@ export class PostComponent implements OnInit {
     console.log(value);
     this.selectedMovie = value;
     this._navService.setTitle('I Watched');
+    const editData = {
+      user: this._authService.getUsername(),
+      movie_id: this.selectedMovie.id
+    }
+    this._postService.editPost(editData).subscribe(
+      response => {
+        if(response && response.status == 200) {
+          if(response.body.movie_id != null) {
+            console.log('post', response.body)
+            let post: Post = response.body;
+            this.date1 = post.post_date;
+            this.stars = post.stars;
+            this.description = post.review;
+            this.tags = post.tags,
+            this.likeLink = post.movie_like == 'Y' ? '../../assets/star_color.png' : '../../assets/star_gray.png' 
+          }
+        }
+      }
+    )
   }
 
   onRate($event:{oldValue:number, newValue:number, starRating:StarRatingComponent}) {
@@ -72,7 +92,7 @@ export class PostComponent implements OnInit {
 
   createPost() {
     const newPost: Post = {
-      user_id: 123,
+      user: this._authService.getUsername(),
       movie_id: this.selectedMovie.id,
       post_date: this.date1,
       stars: this.stars,
@@ -86,7 +106,13 @@ export class PostComponent implements OnInit {
     }
     this._postService.createNewPost(newPost).subscribe(
       response => {
-        console.log('response',response)
+        if(response && response.status == 200) {
+          this._snackBar.open(response.body.response, "Close", {
+            duration: 5000,
+            verticalPosition: 'bottom'
+          });
+          this._route.navigate(['/landing']);
+        }
       }
     )
   }

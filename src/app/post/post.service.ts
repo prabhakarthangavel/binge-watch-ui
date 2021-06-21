@@ -8,8 +8,9 @@ import { Post } from '../Shared/Post.interface';
   providedIn: 'root'
 })
 export class PostService {
-  private autoComplete: string = '/title/auto-complete';
-  private newPost: string = '/posts/addPosts';
+  private autoComplete: string = 'title/auto-complete';
+  private newPost: string = 'posts/addPosts';
+  private editPostUrl: string = 'posts/editPosts';
   constructor(private _http:HttpClient) { }
 
   searchMovies(query: string): Observable<any> {
@@ -27,5 +28,9 @@ export class PostService {
 
   createNewPost(post: Post): Observable<any> {
     return this._http.post(API.BASE_URL + this.newPost, post, { observe: 'response'});
+  }
+
+  editPost(data: any): Observable<any> {
+    return this._http.post(API.BASE_URL + this.editPostUrl, data, { observe: 'response'});
   }
 }

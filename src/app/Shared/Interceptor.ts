@@ -22,9 +22,11 @@ export class Interceptor implements HttpInterceptor {
                 this._authService.spinnerState(false);
             }
         }), catchError(error => {
-            this._snackBar.open("Error occured try after sometime", "Close", {
+            let errorMsg = "Error occured try after sometime";
+            if(error.errror.reponse) errorMsg = error.error.reponse;
+            this._snackBar.open(errorMsg, "Close", {
                 duration: 5000,
-                verticalPosition: 'bottom'
+                verticalPosition: 'top'
             });
             return throwError(error);
         })

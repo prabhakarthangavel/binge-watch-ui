@@ -1,5 +1,5 @@
 export interface Post {
-    user_id: number,
+    user: string,
     movie_id: string,
     post_date: Date,
     stars: number,
