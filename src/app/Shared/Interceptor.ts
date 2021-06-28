@@ -23,7 +23,8 @@ export class Interceptor implements HttpInterceptor {
             }
         }), catchError(error => {
             let errorMsg = "Error occured try after sometime";
-            if(error.errror.reponse) errorMsg = error.error.reponse;
+            console.log(error)
+            if(error.error && error.errror.reponse) errorMsg = error.error.response;
             this._snackBar.open(errorMsg, "Close", {
                 duration: 5000,
                 verticalPosition: 'top'

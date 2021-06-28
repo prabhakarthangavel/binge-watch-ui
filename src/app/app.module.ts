@@ -15,6 +15,8 @@ import { RatingModule } from 'ng-starrating';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { LoginComponent } from './authenticate/login/login.component';
 import { Interceptor } from './Shared/Interceptor';
+import { MyReviewsComponent } from './reviews/my-reviews/my-reviews.component';
+import { ReviewsCardComponent } from './reviews/reviews-card/reviews-card.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { Interceptor } from './Shared/Interceptor';
     LandingComponent,
     PostComponent,
     MovieInfoComponent,
-    LoginComponent
+    LoginComponent,
+    MyReviewsComponent,
+    ReviewsCardComponent
   ],
   imports: [
     BrowserModule,

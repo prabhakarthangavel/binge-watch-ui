@@ -5,12 +5,14 @@ import { PostComponent } from './post/post.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { LoginComponent } from './authenticate/login/login.component';
 import { AuthguardService } from './authenticate/authguard.service';
+import { MyReviewsComponent } from './reviews/my-reviews/my-reviews.component';
 
 const routes: Routes = [
   { path: 'landing', component: LandingComponent, canActivate: [AuthguardService] },
   { path: 'posts', component: PostComponent, canActivate: [AuthguardService] },
   { path: 'movie-info', component: MovieInfoComponent, canActivate: [AuthguardService] },
   { path: 'login', component: LoginComponent, canActivate: [AuthguardService] },
+  { path: 'reviews', component: MyReviewsComponent, canActivate: [AuthguardService] },
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '**', redirectTo: '' },
 ];
