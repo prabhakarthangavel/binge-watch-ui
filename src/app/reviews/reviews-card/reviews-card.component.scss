@@ -1,0 +1,25 @@
+.flex-container {
+    display: flex;
+    margin: 2% 0 2% 0;
+    border-bottom: 0.1rem solid #bababa;
+}
+
+.flex-item1 {
+    width: 35%;
+    margin: 0 2% 0 2%;
+}
+
+.flex-item2 {
+    width: 65%;
+    margin: 2% 2% 2% 2%;
+}
+
+.font-style {
+    color: darkgray;
+    font-size: 13px;
+}
+
+.movie-font {
+    color: whitesmoke;
+    font-size: 15px;
+}
