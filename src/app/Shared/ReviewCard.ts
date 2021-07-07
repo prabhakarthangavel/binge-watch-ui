@@ -6,6 +6,8 @@ export class ReviewCard {
     movie_name: string;
     stars: number;
     year: number;
+    review: string;
+    tags: string;
 
     constructor(reviewResponse: any) {
         this.cast = reviewResponse.cast;
@@ -15,5 +17,7 @@ export class ReviewCard {
         this.movie_name = reviewResponse.movieName;
         this.stars = reviewResponse.rating;
         this.year = reviewResponse.year;
+        this.review = reviewResponse.review;
+        this.tags = reviewResponse.tags;
     }
 }

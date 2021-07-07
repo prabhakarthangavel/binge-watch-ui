@@ -1,11 +1,20 @@
-<div>
+<div *ngFor="let data of reviewData">
     <div class="flex-container">
         <div class="flex-item1">
-            <img src={{this.reviewData?.movie_img}} width="115" height="135">
+            <img src={{data.movie_img}} width="95" height="135">
         </div>
         <div class="flex-item2">
-            <div class="movie-font">{{this.reviewData?.movie_name}}</div>
-            <div class="font-style">{{this.reviewData?.year}}</div>
+            <div class="movie-font">{{data.movie_name}}
+                <span class="font-style">{{data.year}}</span>
+            </div>
+            <div class="font-style">
+                <img width="18" height="18" src="../../assets/star.png">
+                <label style="margin-left: 1%;">{{data.stars}}</label>
+            </div>
+            <div class="font-style">
+                Review: {{data.review}}
+            </div>
+            <div class="font-style">Posted on: {{data.post_date | date}}</div>
         </div>
     </div>
 </div>
