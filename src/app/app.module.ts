@@ -17,6 +17,7 @@ import { LoginComponent } from './authenticate/login/login.component';
 import { Interceptor } from './Shared/Interceptor';
 import { MyReviewsComponent } from './reviews/my-reviews/my-reviews.component';
 import { ReviewsCardComponent } from './reviews/reviews-card/reviews-card.component';
+import { FollowersComponent } from './followers/followers.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ReviewsCardComponent } from './reviews/reviews-card/reviews-card.compon
     MovieInfoComponent,
     LoginComponent,
     MyReviewsComponent,
-    ReviewsCardComponent
+    ReviewsCardComponent,
+    FollowersComponent
   ],
   imports: [
     BrowserModule,

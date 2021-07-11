@@ -1,1 +1,7 @@
-<app-reviews-card [reviewData]=reviewData></app-reviews-card>
+<div class="margin">
+    <mat-form-field class="searchBar">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" (input)="onSearch($event)">
+    </mat-form-field>
+</div>
+<app-reviews-card [reviewData]=filterdData></app-reviews-card>

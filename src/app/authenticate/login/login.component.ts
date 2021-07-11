@@ -80,7 +80,6 @@ export class LoginComponent implements OnInit {
       }
       this._authService.registerUser(register).subscribe(
         response => {
-          console.log(response)
           if (response && response.status == 200) {
             this._snackBar.open(response.body.response + " Login Now.", "Close", {
               duration: 5000,
