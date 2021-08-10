@@ -2,9 +2,23 @@
     <mat-form-field class="searchBar">
         <mat-label>Search People</mat-label>
         <input matInput type="text" (input)="onSearch($event)">
+        <!-- <mat-autocomplete #auto="matAutocomplete">
+            <mat-option [value]="user" *ngFor="let user of searchUserList">
+              {{user | titlecase}}
+            </mat-option>
+          </mat-autocomplete> -->
     </mat-form-field>
 </div>
-<mat-tab-group>
+
+<div *ngIf="!searched">
+  <mat-tab-group>
     <mat-tab label="Followers">Followers</mat-tab>
     <mat-tab label="Following">Following</mat-tab>
-</mat-tab-group>
+  </mat-tab-group>
+</div>
+
+<div *ngIf="searched">
+  <div *ngFor="let searchUser of searchUserList">
+    <app-search [user]="searchUser"></app-search>
+  </div>
+</div>

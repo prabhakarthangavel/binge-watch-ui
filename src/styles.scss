@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { height: 100%; overflow-x: auto;}
 body { margin: 0; font-family: cursive;; }
 
 .margin{
     margin: 3% 3% 0 3%;
     overflow-y: scroll;         /* SCROLLBARS !!!*/
-    height: calc(100% - 77px);
-    overflow-x: hidden;
+    max-height: calc(100% - 77px);
+    overflow-x: hidden!important;
 }
 
 .mat-tab-label{

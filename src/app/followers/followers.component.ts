@@ -8,9 +8,9 @@ import { FollowersService } from './followers.service';
   styleUrls: ['./followers.component.scss']
 })
 export class FollowersComponent implements OnInit {
-
+  public searchUserList = [];
+  public searched: boolean;
   constructor(private _navService: NavBarService, private _followService: FollowersService) { 
-    // this._navService.setHide();
     this._navService.setTitle("People");
   }
 
@@ -18,8 +18,16 @@ export class FollowersComponent implements OnInit {
   }
 
   onSearch(event: any) {
-    console.log(event)
-    this.
+    this.searched = true;
+    if(event.target.value != '') {
+      this._followService.findPeople(event.target.value).subscribe(
+        response => {
+          if(response && response.status == 200) {
+            this.searchUserList = response.body;
+          }
+        }
+      )
+    }
   }
 
 }

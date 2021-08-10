@@ -18,6 +18,7 @@ import { Interceptor } from './Shared/Interceptor';
 import { MyReviewsComponent } from './reviews/my-reviews/my-reviews.component';
 import { ReviewsCardComponent } from './reviews/reviews-card/reviews-card.component';
 import { FollowersComponent } from './followers/followers.component';
+import { SearchComponent } from './followers/search/search.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FollowersComponent } from './followers/followers.component';
     LoginComponent,
     MyReviewsComponent,
     ReviewsCardComponent,
-    FollowersComponent
+    FollowersComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

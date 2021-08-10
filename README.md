@@ -29,3 +29,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Login User and Password for test
 prabhakar@gmail.com
 password
+
+jonsnow@gmail.com
+dextermorgan@gmail.com
+walterwhite@gmail.com
+password
