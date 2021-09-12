@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavBarService } from '../nav-bar/nav-bar.service';
+import { Users } from '../Shared/Users';
 import { FollowersService } from './followers.service';
 
 @Component({
@@ -8,9 +9,9 @@ import { FollowersService } from './followers.service';
   styleUrls: ['./followers.component.scss']
 })
 export class FollowersComponent implements OnInit {
-  public searchUserList = [];
+  public searchUserList: Users[] = [];
   public searched: boolean;
-  constructor(private _navService: NavBarService, private _followService: FollowersService) { 
+  constructor(private _navService: NavBarService, private _followService: FollowersService) {
     this._navService.setTitle("People");
   }
 
@@ -18,15 +19,15 @@ export class FollowersComponent implements OnInit {
   }
 
   onSearch(event: any) {
+    this.searchUserList = [];
     this.searched = true;
-    if(event.target.value != '') {
-      this._followService.findPeople(event.target.value).subscribe(
-        response => {
-          if(response && response.status == 200) {
-            this.searchUserList = response.body;
-          }
-        }
-      )
+    if (event.target.value != '') {
+      this._followService.findPeopleAndFollwings(event.target.value).subscribe(
+        responseList => {
+            responseList[0].body.forEach((element: any) => {
+              this.searchUserList.push(new Users(element, (responseList[1].body as Array<any>).includes(element.id) ? true : false));
+            });
+          });
     }
   }
 

@@ -1,5 +1,5 @@
 <div class="card-item">
     <div class="font-style">{{userName | titlecase}}</div>
-    <button mat-raised-button color="primary" style="width: 20%;" (click)="followUser()" *ngIf="!followEnable">Follow</button>
-    <button mat-raised-button style="width: 25%;" *ngIf="followEnable">Following</button>
+    <button mat-raised-button color="primary" style="width: 25%;" (click)="followUser()" *ngIf="!followEnable">Follow</button>
+    <button mat-raised-button style="width: 25%;" *ngIf="followEnable">UnFollow</button>
 </div>
