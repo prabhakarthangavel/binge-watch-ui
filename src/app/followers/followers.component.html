@@ -19,6 +19,6 @@
 
 <div *ngIf="searched">
   <div *ngFor="let searchUser of searchUserList">
-    <app-search [user]="searchUser"></app-search>
+    <app-search [user]="searchUser" (follow)="followUser($event)" (unfollow)="unfollowUser($event)"></app-search>
   </div>
 </div>

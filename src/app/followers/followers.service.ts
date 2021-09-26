@@ -10,6 +10,7 @@ export class FollowersService {
   private findPeopleUrl: string = API.BASE_URL + 'people/searchPeople';
   private followPeopleUrl: string = API.BASE_URL + 'people/followPeople';
   private followingPeopleUrl: string = API.BASE_URL + 'people/followingPeople';
+  private unFollowPeopleUrl: string = API.BASE_URL + 'people/unfollowPeople';
   constructor(private _http: HttpClient) { }
 
   findPeopleAndFollwings(name: string): Observable<any[]> {
@@ -24,5 +25,9 @@ export class FollowersService {
 
   followingPeople(): Observable<any> {
     return this._http.get(this.followingPeopleUrl, { observe: 'response' });
+  }
+
+  unfollowPeople(userId: number): Observable<any> {
+    return this._http.get(this.unFollowPeopleUrl + '/' + userId, { observe: 'response' });
   }
 }

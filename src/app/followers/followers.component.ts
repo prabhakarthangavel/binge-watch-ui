@@ -24,11 +24,29 @@ export class FollowersComponent implements OnInit {
     if (event.target.value != '') {
       this._followService.findPeopleAndFollwings(event.target.value).subscribe(
         responseList => {
-            responseList[0].body.forEach((element: any) => {
-              this.searchUserList.push(new Users(element, (responseList[1].body as Array<any>).includes(element.id) ? true : false));
-            });
+          responseList[0].body.forEach((element: any) => {
+            this.searchUserList.push(new Users(element, (responseList[1].body as Array<any>).includes(element.id) ? true : false));
           });
+        });
     }
+  }
+
+  followUser(userId: any) {
+    this._followService.followPeople(userId).subscribe(
+      response => {
+        console.log("is.follwinginPeopleth", response);
+        if (response && response.status == 200) {
+
+        }
+      });
+  }
+
+  unfollowUser(userId: any) {
+    this._followService.unfollowPeople(userId).subscribe(
+      response => {
+        console.log(response)
+      }
+    )
   }
 
 }
