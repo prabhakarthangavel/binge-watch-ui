@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavBarService } from '../nav-bar/nav-bar.service';
 import { Users } from '../Shared/Users';
 import { FollowersService } from './followers.service';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-followers',
@@ -10,6 +11,7 @@ import { FollowersService } from './followers.service';
 })
 export class FollowersComponent implements OnInit {
   public searchUserList: Users[] = [];
+  public searchObservable$: Observable<any>;
   public searched: boolean;
   constructor(private _navService: NavBarService, private _followService: FollowersService) {
     this._navService.setTitle("People");
@@ -26,6 +28,7 @@ export class FollowersComponent implements OnInit {
         responseList => {
           responseList[0].body.forEach((element: any) => {
             this.searchUserList.push(new Users(element, (responseList[1].body as Array<any>).includes(element.id) ? true : false));
+            this.searchObservable$ = of(this.searchUserList);
           });
         });
     }
@@ -34,9 +37,10 @@ export class FollowersComponent implements OnInit {
   followUser(userId: any) {
     this._followService.followPeople(userId).subscribe(
       response => {
-        console.log("is.follwinginPeopleth", response);
         if (response && response.status == 200) {
-
+          let index = this.searchUserList.findIndex(items => items.id == response.body);
+          this.searchUserList[index].following = true;
+          this.searchObservable$ = of(this.searchUserList);
         }
       });
   }
@@ -44,9 +48,12 @@ export class FollowersComponent implements OnInit {
   unfollowUser(userId: any) {
     this._followService.unfollowPeople(userId).subscribe(
       response => {
-        console.log(response)
-      }
-    )
+        if (response && response.status == 200) {
+          let index = this.searchUserList.findIndex(items => items.id == response.body);
+          this.searchUserList[index].following = false;
+          this.searchObservable$ = of(this.searchUserList);
+        }
+      });
   }
 
 }
