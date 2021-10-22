@@ -66,6 +66,14 @@ export class NavBarComponent implements OnInit, OnDestroy, AfterContentChecked {
     )
   }
 
+  people() {
+    if (this._router.url.includes('followers')) {
+      location.reload();
+    }else {
+      this._router.navigate(['/followers']);
+    }
+  }
+
   logout() {
     localStorage.removeItem('token');
     this._router.navigate(['/login']);
