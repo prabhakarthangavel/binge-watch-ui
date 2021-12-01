@@ -25,27 +25,32 @@ export class PostComponent implements OnInit {
   public likeLink = "../../assets/star_gray.png";
   public description: string;
   public tags: string;
-  constructor(private _postService: PostService, public _navService: NavBarService, private _authService: AuthService, private _snackBar: MatSnackBar, private _route: Router) { 
+  constructor(private _postService: PostService, public _navService: NavBarService, private _authService: AuthService, private _snackBar: MatSnackBar, private _route: Router) {
     this._navService.setHide();
     this._navService.setTitle("New Post");
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onSearch(value: any) {
-    // this._landingService.searchMovies(value.target.value).subscribe(
+    if (value.target.value.length > 2) {
+      this._postService.searchMovies(value.target.value).subscribe(
+        response => {
+          this.resultArray = response.body.d;
+          for (let i = 0; i < this.resultArray.length; i++) {
+            this.resultArray[i].img = response.body.d[i].i.imageUrl;
+          }
+        });
+    }
+    // this._postService.searchDummy(value.target.value).subscribe(
     //   response => {
-    //     console.log('response',response);
-    // });
-    this._postService.searchDummy(value.target.value).subscribe(
-      response => {
-        this.resultArray = response.d;
-        for(let i = 0;i<this.resultArray.length;i++) {
-          this.resultArray[i].img = response.d[i].i.imageUrl;
-        }
-        console.log(this.resultArray);
-      }
-    )
+    //     this.resultArray = response.d;
+    //     for(let i = 0;i<this.resultArray.length;i++) {
+    //       this.resultArray[i].img = response.d[i].i.imageUrl;
+    //     }
+    //     console.log(this.resultArray);
+    //   }
+    // )
   }
 
   movieSelected(value: Search) {
@@ -58,35 +63,35 @@ export class PostComponent implements OnInit {
     }
     this._postService.editPost(editData).subscribe(
       response => {
-        if(response && response.status == 200) {
-          if(response.body.movie_id != null) {
+        if (response && response.status == 200) {
+          if (response.body.movie_id != null) {
             console.log('post', response.body)
             let post: Post = response.body;
             this.date1 = post.post_date;
             this.stars = post.stars;
             this.description = post.review;
             this.tags = post.tags,
-            this.likeLink = post.movie_like == 'Y' ? '../../assets/star_color.png' : '../../assets/star_gray.png' 
+              this.likeLink = post.movie_like == 'Y' ? '../../assets/star_color.png' : '../../assets/star_gray.png'
           }
         }
       }
     )
   }
 
-  onRate($event:{oldValue:number, newValue:number, starRating:StarRatingComponent}) {
+  onRate($event: { oldValue: number, newValue: number, starRating: StarRatingComponent }) {
     this.stars = $event.newValue;
   }
 
   likeDislike(value: string) {
-    if(this.likeLink == '../../assets/star_gray.png') {
+    if (this.likeLink == '../../assets/star_gray.png') {
       this.likeLink = '../../assets/star_color.png';
-    }else if(this.likeLink == '../../assets/star_color.png') {
+    } else if (this.likeLink == '../../assets/star_color.png') {
       this.likeLink = '../../assets/star_gray.png'
     }
   }
 
   enablePost(): boolean {
-    if(this.date1 == null || this.stars == 0) return false;
+    if (this.date1 == null || this.stars == 0) return false;
     return true;
   }
 
@@ -106,7 +111,7 @@ export class PostComponent implements OnInit {
     }
     this._postService.createNewPost(newPost).subscribe(
       response => {
-        if(response && response.status == 200) {
+        if (response && response.status == 200) {
           this._snackBar.open(response.body.response, "Close", {
             duration: 5000,
             verticalPosition: 'bottom'

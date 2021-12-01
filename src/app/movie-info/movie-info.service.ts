@@ -17,7 +17,7 @@ export class MovieInfoService {
     })
     let params = new HttpParams();
     params = params.append("tconst", id);
-    return this._http.get(API.BASE_URL + this.overview, {params: params, headers: header, observe: 'response'});
+    return this._http.get(API.RAPID_API + this.overview, {params: params, headers: header, observe: 'response'});
   }
 
   getMovieOverviewDummy(id: string): Observable<any> {

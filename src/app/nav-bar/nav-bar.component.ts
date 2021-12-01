@@ -46,24 +46,29 @@ export class NavBarComponent implements OnInit, OnDestroy, AfterContentChecked {
   }
 
   movieSelected(movie: Search) {
-    console.log(movie)
     this.searchEnabled = false;
     this._router.navigate(['/movie-info'], { queryParams: {id: movie.id, cast: movie.s, img: movie.img}});
   }
 
   onSearch(value: any) {
-    // this._landingService.searchMovies(value.target.value).subscribe(
+    if (value.target.value.length > 2) {
+      this._postService.searchMovies(value.target.value).subscribe(
+        response => {
+          this.resultArray = response.body.d;
+          for (let i = 0; i < this.resultArray.length; i++) {
+            this.resultArray[i].img = response.body.d[i].i.imageUrl;
+          }
+        });
+    }
+
+    // this._postService.searchDummy(value.target.value).subscribe(
     //   response => {
-    //     console.log('response',response);
-    // });
-    this._postService.searchDummy(value.target.value).subscribe(
-      response => {
-        this.resultArray = response.d;
-        for(let i = 0;i<this.resultArray.length;i++) {
-          this.resultArray[i].img = response.d[i].i.imageUrl;
-        }
-      }
-    )
+    //     this.resultArray = response.d;
+    //     for(let i = 0;i<this.resultArray.length;i++) {
+    //       this.resultArray[i].img = response.d[i].i.imageUrl;
+    //     }
+    //   }
+    // )
   }
 
   people() {

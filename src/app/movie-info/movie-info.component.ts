@@ -31,26 +31,47 @@ export class MovieInfoComponent implements OnInit {
 
   ngOnInit(): void { 
     this._route.queryParams.subscribe(query => {
-      this._movieService.getMovieOverviewDummy(query.id as string).subscribe(
+      this._movieService.getMovieOverview(query.id as string).subscribe(
         response => {
           const movie: MovieInfo = {
             id: query.id as string,
             img: query.img as string,
             cast: query.cast as string,
-            name: response.title.title,
-            year: response.title.year,
-            running_length: response.title.runningTimeInMinutes,
-            rating: response.ratings.rating,
-            description: response.plotOutline.text,
-            maturity: response.certificates.US[0].certificate,
-            genres: response.genres,
-            releasedate: response.releaseDate
+            name: response.body.title.title,
+            year: response.body.title.year,
+            running_length: response.body.title.runningTimeInMinutes,
+            rating: response.body.ratings.rating,
+            description: response.body.plotOutline.text,
+            maturity: response.body.certificates.US[0].certificate,
+            genres: response.body.genres,
+            releasedate: response.body.releaseDate
           }
           this.movieInfo = movie;
           console.log('mvoieInfo',response)
         }
       )
     })
+    // this._route.queryParams.subscribe(query => {
+    //   this._movieService.getMovieOverviewDummy(query.id as string).subscribe(
+    //     response => {
+    //       const movie: MovieInfo = {
+    //         id: query.id as string,
+    //         img: query.img as string,
+    //         cast: query.cast as string,
+    //         name: response.title.title,
+    //         year: response.title.year,
+    //         running_length: response.title.runningTimeInMinutes,
+    //         rating: response.ratings.rating,
+    //         description: response.plotOutline.text,
+    //         maturity: response.certificates.US[0].certificate,
+    //         genres: response.genres,
+    //         releasedate: response.releaseDate
+    //       }
+    //       this.movieInfo = movie;
+    //       console.log('mvoieInfo',response)
+    //     }
+    //   )
+    // })
   }
 
 }

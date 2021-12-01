@@ -13,11 +13,26 @@ export class FollowersComponent implements OnInit {
   public searchUserList: Users[] = [];
   public searchObservable$: Observable<any>;
   public searched: boolean;
+  public followersList: string[] = [];
+  public followingList: Users[] = [];
   constructor(private _navService: NavBarService, private _followService: FollowersService) {
     this._navService.setTitle("People");
   }
 
   ngOnInit(): void {
+    this._followService.getFollowers().subscribe(
+      response => {
+        response.body.forEach((element: any) => {
+          this.followersList.push(element.firstName + " " + element.lastName);
+        });
+      });
+
+    this._followService.getFollowings().subscribe(
+      response => {
+        response.body.forEach((element: any) => {
+          this.followingList.push(new Users(element, true));
+        });
+      });
   }
 
   onSearch(event: any) {
@@ -45,13 +60,17 @@ export class FollowersComponent implements OnInit {
       });
   }
 
-  unfollowUser(userId: any) {
+  unfollowUser(userId: any, samePage: boolean) {
     this._followService.unfollowPeople(userId).subscribe(
       response => {
         if (response && response.status == 200) {
           let index = this.searchUserList.findIndex(items => items.id == response.body);
-          this.searchUserList[index].following = false;
-          this.searchObservable$ = of(this.searchUserList);
+          if (samePage) {
+            this.followingList = this.followingList.filter(user => user.id != userId);
+          }else {
+            this.searchUserList[index].following = false;
+            this.searchObservable$ = of(this.searchUserList);
+          }
         }
       });
   }

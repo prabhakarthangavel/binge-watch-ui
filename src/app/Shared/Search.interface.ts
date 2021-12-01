@@ -4,7 +4,6 @@ export interface Search {
     q: string,
     rank: number,
     s: string,
-    vt: number,
     y: number,
     img: string
 }

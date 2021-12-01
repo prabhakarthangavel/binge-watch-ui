@@ -1,3 +1,15 @@
 .searchBar {
     width: -webkit-fill-available;
 } 
+
+.card-item {
+    display: flex;
+    border-bottom: 0.1rem solid #bababa;
+    padding: 3% 0 3% 0;
+}
+
+.font-style {
+    width: 60%;
+    font-size: large;
+    margin-left: 3%;
+}
