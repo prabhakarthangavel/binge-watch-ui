@@ -56,7 +56,7 @@ export class NavBarComponent implements OnInit, OnDestroy, AfterContentChecked {
         response => {
           this.resultArray = response.body.d;
           for (let i = 0; i < this.resultArray.length; i++) {
-            this.resultArray[i].img = response.body.d[i].i.imageUrl;
+            this.resultArray[i].img = typeof response.body.d[i].i != 'undefined' ? response.body.d[i].i.imageUrl : '';
           }
         });
     }

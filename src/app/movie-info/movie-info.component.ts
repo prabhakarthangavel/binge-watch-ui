@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavBarService } from '../nav-bar/nav-bar.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { MovieInfo } from '../Shared/Movie-info.interface';
 import { MovieInfoService } from './movie-info.service';
+import { Search } from '../Shared/Search.interface';
 
 @Component({
   selector: 'app-movie-info',
@@ -24,7 +25,8 @@ export class MovieInfoComponent implements OnInit {
     releasedate: new Date()
   };
 
-  constructor(private _navService: NavBarService, private _route: ActivatedRoute, private _movieService: MovieInfoService) {
+  constructor(private _navService: NavBarService, private _route: ActivatedRoute, private _movieService: MovieInfoService,
+    private _router: Router) {
     this._navService.setHide();
     this._navService.setTitle("Movie Info");
   }
@@ -35,19 +37,18 @@ export class MovieInfoComponent implements OnInit {
         response => {
           const movie: MovieInfo = {
             id: query.id as string,
-            img: query.img as string,
+            img: typeof query.img != 'undefined' ? query.img as string : '',
             cast: query.cast as string,
             name: response.body.title.title,
             year: response.body.title.year,
             running_length: response.body.title.runningTimeInMinutes,
             rating: response.body.ratings.rating,
             description: response.body.plotOutline.text,
-            maturity: response.body.certificates.US[0].certificate,
+            maturity: typeof response.body.certificates != 'undefined' ? response.body.certificates.US[0].certificate : null,
             genres: response.body.genres,
             releasedate: response.body.releaseDate
           }
           this.movieInfo = movie;
-          console.log('mvoieInfo',response)
         }
       )
     })
@@ -72,6 +73,10 @@ export class MovieInfoComponent implements OnInit {
     //     }
     //   )
     // })
+  }
+
+  rate() {
+    this._router.navigate(['/posts'], { queryParams: {id: this.movieInfo.id, name: this.movieInfo.name, rank: this.movieInfo.rating, cast: this.movieInfo.cast, year: this.movieInfo.year, img: this.movieInfo.img}});
   }
 
 }

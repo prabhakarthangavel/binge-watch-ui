@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Search } from '../Shared/Search.interface';
 import { PostService } from '../post/post.service';
 import { NavBarService } from '../nav-bar/nav-bar.service';
@@ -25,9 +25,28 @@ export class PostComponent implements OnInit {
   public likeLink = "../../assets/star_gray.png";
   public description: string;
   public tags: string;
-  constructor(private _postService: PostService, public _navService: NavBarService, private _authService: AuthService, private _snackBar: MatSnackBar, private _route: Router) {
-    this._navService.setHide();
-    this._navService.setTitle("New Post");
+  public movieId: string;
+  constructor(private _postService: PostService, public _navService: NavBarService, private _activeRoute: ActivatedRoute, private _authService: AuthService, private _snackBar: MatSnackBar, private _route: Router) {
+    this._navService.setHide(); 
+    this._activeRoute.queryParams.subscribe(
+      query => {
+        this.movieId = query.id;
+        const selectedMovie: Search = {
+          id: query.id,
+          img: query.img,
+          l: query.name,
+          rank: query.rank,
+          s: query.cast,
+          y: query.year,
+          q: '',
+        }
+        this.movieSelected(selectedMovie);
+    })
+    if (this.movieId != null) {
+      this._navService.setTitle('I Watched');
+    }else {
+      this._navService.setTitle('New Post');
+    }
   }
 
   ngOnInit(): void { }
@@ -54,7 +73,6 @@ export class PostComponent implements OnInit {
   }
 
   movieSelected(value: Search) {
-    console.log(value);
     this.selectedMovie = value;
     this._navService.setTitle('I Watched');
     const editData = {
@@ -65,7 +83,6 @@ export class PostComponent implements OnInit {
       response => {
         if (response && response.status == 200) {
           if (response.body.movie_id != null) {
-            console.log('post', response.body)
             let post: Post = response.body;
             this.date1 = post.post_date;
             this.stars = post.stars;

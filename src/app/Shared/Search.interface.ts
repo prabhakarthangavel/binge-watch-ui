@@ -1,9 +1,9 @@
 export interface Search {
     id: string,
-    l: string,
+    l: string, //name
     q: string,
     rank: number,
-    s: string,
-    y: number,
+    s: string, //cast
+    y: number, //year
     img: string
 }
